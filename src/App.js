@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {connect} from 'react-redux';
+import {fetchingAll} from './actions/contacts';
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
@@ -18,4 +21,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  contacts: state
+});
+
+const mapDispatchToProps = () =>({
+  contactActions: {fetchingAll}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
