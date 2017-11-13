@@ -8,16 +8,19 @@ import {rootReducer} from './reducers/index';
 import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
+import {BrowserRouter} from 'react-router-dom';
 
 
 let store = createStore(rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunkMiddleware, logger)
-  );
+);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();

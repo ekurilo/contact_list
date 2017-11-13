@@ -16,6 +16,12 @@ export default (state = {contacts:[], isLoading: false}, action) => {
         isLoading: false
       };
 
+    case 'NEW_CONTACT':
+      return {
+        ...state,
+        contact: {}
+      };
+
     default:
       return state;
   }
