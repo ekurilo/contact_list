@@ -22,6 +22,20 @@ export default (state = {contacts:[], isLoading: false}, action) => {
         contact: {}
       };
 
+    case 'ADDING_CONTACT':
+      return {
+        ...state,
+        contact: action.contact,
+        isLoading: true
+      };
+
+    case 'ADD_CONTACT_SUCCESS':
+      return {
+        ...state,
+        contacts: [...state.contacts, action.contact],
+        isLoading: false
+      };
+
     default:
       return state;
   }

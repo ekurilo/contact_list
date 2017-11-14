@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import Contact from './Contact';
+import {List, ListItem} from 'material-ui';
 
 export default class ContactList extends Component {
   render() {
@@ -8,9 +9,9 @@ export default class ContactList extends Component {
       <Contact key={contact.id} contact={contact}/>
     );
     return(
-      <div>
+      <List>
         {contacts}
-      </div>
+      </List>
     );
   }
 }

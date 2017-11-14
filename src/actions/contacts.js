@@ -18,8 +18,8 @@ export const newContact = () => dispatch => dispatch ({
   type: 'NEW_CONTACT'
 });
 
-export const addContact = contact => ({
-  type: 'ADD_CONTACT',
+export const addingContact = contact => ({
+  type: 'ADDING_CONTACT',
   contact
 });
 
@@ -41,7 +41,7 @@ export function fetchAllContacts() {
 
 export function addContactRequest(contact) {
   return dispatch => {
-    dispatch(addContact(contact));
+    dispatch(addingContact(contact));
     fetch(contactUrl, {
       method: 'post',
       headers: {

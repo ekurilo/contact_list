@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
 import {BrowserRouter} from 'react-router-dom';
+import {MuiThemeProvider} from 'material-ui';
 
 
 let store = createStore(rootReducer,
@@ -18,9 +19,11 @@ let store = createStore(rootReducer,
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
+    <MuiThemeProvider>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </MuiThemeProvider>
   </Provider>
   , document.getElementById('root'));
 registerServiceWorker();
