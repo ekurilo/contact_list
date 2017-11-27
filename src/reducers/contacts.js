@@ -6,7 +6,8 @@ export default (state = {contacts:[], isLoading: false, contact: {}}, action) =>
       return {
         ...state,
         timestamp: action.payload,
-        isLoading: true
+        isLoading: true,
+        contact: {}
       };
 
     case 'FETCH_CONTACTS_SUCCESS':
@@ -64,6 +65,23 @@ export default (state = {contacts:[], isLoading: false, contact: {}}, action) =>
         isLoading: false,
         contact: action.contact
       };
+
+    case 'UPDATING_CONTACT':
+      return {
+        ...state,
+        isLoading: true,
+        contact: action.contact
+      };
+
+    case 'UPDATE_CONTACT_SUCCESS':
+      const contact = action.contact;
+      return {
+        ...state,
+        isLoading: false,
+        contact: contact,
+        contacts: state.contacts.map(item => item.id === contact.id ? contact : item)
+      };
+
 
 
     default:

@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {IconButton, IconMenu, ListItem, MenuItem} from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import {Link} from 'react-router-dom';
 
 
 
@@ -19,7 +20,7 @@ export default class Contact extends Component {
 
   iconMenu = (
     <IconMenu iconButtonElement={this.iconButton}>
-      <MenuItem>Edit</MenuItem>
+      <Link to={`/edit/${this.props.contact.id}`}><MenuItem>Edit</MenuItem></Link>
       <MenuItem onClick={this.handleDelete}>Delete</MenuItem>
     </IconMenu>
   );

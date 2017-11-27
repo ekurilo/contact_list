@@ -2,10 +2,25 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {FlatButton, TextField} from 'material-ui';
 import {connect} from 'react-redux';
-import {fetchContactSuccess} from '../actions/contacts';
+
+const validate = values => {
+  const errors = {};
+  const requiredFieds = [
+    'firstName',
+    'lastName',
+    'tel'
+  ];
+  requiredFieds.forEach(field => {
+    if (!values[field]) {
+      errors[field] = 'Required'
+    }
+  });
+  return errors;
+};
 
 class ContactForm extends Component {
-  createTextField = ({input, label}) => <TextField hintText={label} floatingLabelText={label} {...input} />;
+  createTextField = ({input, label, meta: { touched, error }}) =>
+    <TextField hintText={label} floatingLabelText={label} {...input} errorText={touched && error} />;
 
   render() {
     return (
@@ -27,7 +42,8 @@ class ContactForm extends Component {
 }
 
 ContactForm = reduxForm({
-  form: 'contactForm'
+  form: 'contactForm',
+  validate
 })(ContactForm);
 
 export default connect(state => ({

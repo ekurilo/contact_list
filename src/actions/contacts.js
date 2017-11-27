@@ -53,6 +53,16 @@ export const fetchContactFailure = error => ({
   error
 });
 
+export const updatingContact = contact => ({
+  type: 'UPDATING_CONTACT',
+  contact
+});
+
+export const updateContactSuccess = contact => ({
+  type: 'UPDATE_CONTACT_SUCCESS',
+  contact
+});
+
 const contactUrl = 'http://localhost:8090/api/contacts';
 export function fetchAllContacts() {
   return dispatch => {
@@ -98,4 +108,17 @@ export const fetchContact = id => dispatch => {
     })
     .then(json => dispatch(fetchContactSuccess(json)))
     .catch(error => dispatch(fetchContactFailure(error)) )
-}
+};
+
+export const updateContact = (id, contact) => dispatch => {
+  dispatch(updatingContact(contact));
+  return fetch(`${contactUrl}/${id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(contact)
+  })
+    .then(resp => resp.json())
+    .then(json => dispatch(updateContactSuccess(json)))
+};
