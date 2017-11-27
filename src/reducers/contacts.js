@@ -1,5 +1,5 @@
 
-export default (state = {contacts:[], isLoading: false}, action) => {
+export default (state = {contacts:[], isLoading: false, contact: {}}, action) => {
   switch (action.type) {
 
     case 'FETCHING_CONTACTS':
@@ -35,6 +35,36 @@ export default (state = {contacts:[], isLoading: false}, action) => {
         contacts: [...state.contacts, action.contact],
         isLoading: false
       };
+
+    case 'DELETING_CONTACT':
+      return {
+        ...state,
+        contact: action.contact,
+        isLoading: true
+      };
+
+    case 'DELETE_CONTACT_SUCCESS':
+      return {
+        ...state,
+        contacts: state.contacts.filter(contact => contact.id !== action.contact.id),
+        isLoading: false,
+        contact: {}
+      };
+
+    case 'FETCHING_CONTACT':
+      return {
+        ...state,
+        isLoading: true,
+        contact: {}
+      };
+
+    case 'FETCH_CONTACT_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        contact: action.contact
+      };
+
 
     default:
       return state;

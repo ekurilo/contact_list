@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchAllContacts} from '../actions/contacts';
+import {deleteContact, fetchAllContacts} from '../actions/contacts';
 import {bindActionCreators} from 'redux';
 import ContactList from '../components/ContactList';
 import {Link} from 'react-router-dom';
@@ -15,7 +15,7 @@ class Main extends Component {
     return(
       <div>
         <Link to="/add"><button>Add contact</button></Link>
-        <ContactList contacts={this.props.contacts}/>
+        <ContactList contacts={this.props.contacts} deleteContact={this.props.deleteContact}/>
       </div>
     );
   }
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators({fetchAllContacts}, dispatch)
+  bindActionCreators({fetchAllContacts, deleteContact}, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

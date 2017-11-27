@@ -13,10 +13,14 @@ export default class Contact extends Component {
     </IconButton>
   );
 
+  handleDelete = () => {
+    this.props.deleteContact(this.props.contact)
+  };
+
   iconMenu = (
     <IconMenu iconButtonElement={this.iconButton}>
       <MenuItem>Edit</MenuItem>
-      <MenuItem>Delete</MenuItem>
+      <MenuItem onClick={this.handleDelete}>Delete</MenuItem>
     </IconMenu>
   );
 
