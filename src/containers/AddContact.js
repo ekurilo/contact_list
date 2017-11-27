@@ -2,37 +2,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addContactRequest, newContact} from '../actions/contacts';
+import ContactForm from './contact-form';
 
 class AddContact extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    tel: ''
-  };
 
   componentDidMount() {
     this.props.newContact();
   }
-
-  handleChange(e) {
-    this.setState({[e.target.name]: e.target.value});
-  }
-
-  handleAdd() {
-    this.props.addContactRequest({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      tel: this.state.tel
-    })
+  handleAdd(contact) {
+    this.props.addContactRequest(contact)
   }
 
   render() {
     return (
       <div>
-        <input name="firstName" onChange={this.handleChange.bind(this)} value={this.state.firstName}/>
-        <input name="lastName" onChange={this.handleChange.bind(this)} value={this.state.lastName}/>
-        <input name="tel" onChange={this.handleChange.bind(this)} value={this.state.tel}/>
-        <button onClick={this.handleAdd.bind(this)}>Add</button>
+        <ContactForm onSubmit={this.handleAdd.bind(this)}/>
       </div>
     );
   }
