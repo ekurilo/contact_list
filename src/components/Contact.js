@@ -30,7 +30,7 @@ export default class Contact extends Component {
       <ListItem rightIconButton={this.iconMenu}>
         <div>{this.props.contact.firstName}</div>
         <div>{this.props.contact.lastName}</div>
-        <div>{this.props.contact.tel}</div>
+        <div>{this.props.contact.phone}</div>
       </ListItem>
     );
   }

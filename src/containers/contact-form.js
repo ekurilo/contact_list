@@ -8,7 +8,7 @@ const validate = values => {
   const requiredFieds = [
     'firstName',
     'lastName',
-    'tel'
+    'phone'
   ];
   requiredFieds.forEach(field => {
     if (!values[field]) {
@@ -32,7 +32,7 @@ class ContactForm extends Component {
           <Field name="lastName" component={this.createTextField} label="Last Name"/>
         </div>
         <div>
-          <Field name="tel" component={this.createTextField} label="Phone"/>
+          <Field name="phone" component={this.createTextField} label="Phone"/>
         </div>
 
         <FlatButton primary={true} onClick={this.props.handleSubmit}>Save</FlatButton>
